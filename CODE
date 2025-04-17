@@ -1,0 +1,23 @@
+SELECT
+
+# Using EXTRACT to get yearly data
+    EXTRACT(YEAR FROM order_date) AS order_year,   
+
+# Using EXTRACT to get monethly data
+    EXTRACT(MONTH FROM order_date) AS order_month,  
+
+# Using SUM for Revenue
+    SUM(amount) AS monthly_revenue,  
+
+# Counting unique orders for Volume
+    COUNT(DISTINCT order_id) AS order_volume                          
+FROM online_sales
+
+# Limiting Time Period 
+WHERE order_date BETWEEN '2023-01-01' AND '2023-12-31' 
+
+# Group by Year and Month 
+GROUP BY order_year, order_month
+
+# Sort by Year and Month 
+ORDER BY order_year ASC, order_month ASC;                             
